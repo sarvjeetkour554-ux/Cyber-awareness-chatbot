@@ -1,0 +1,22 @@
+[
+    {
+        "question": "What is phishing?",
+        "answer": "A cyber attack using fake emails or messages."
+    },
+    {
+        "question": "Should you share OTP?",
+        "answer": "No"
+    },
+    {
+        "question": "What does 2FA stand for?",
+        "answer": "Two Factor Authentication"
+    },
+    {
+        "question": "What is malware?",
+        "answer": "Malicious software designed to harm systems."
+    },
+    {
+        "question": "Why use strong passwords?",
+        "answer": "To protect accounts from unauthorized access."
+    }
+]
