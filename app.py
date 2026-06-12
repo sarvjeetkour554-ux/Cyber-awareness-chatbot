@@ -1,7 +1,7 @@
 import random
 import streamlit as st
 
-from utils.ollama_api import get_response
+from utils.groq_api import get_response
 from utils.quiz_generator import get_random_quiz
 from utils.pdf_export import create_pdf
 
@@ -26,7 +26,7 @@ h1 {
 
 .stChatMessage {
     border-radius: 15px;
-    padding: 10px;
+    padding: 5px;
 }
 
 /* Chat Input Container */
@@ -83,7 +83,6 @@ if "messages" not in st.session_state:
 
 st.markdown("""
 #  🛡️Cyber Awareness Assistant
-### Your Personal  CyberShield Chatbot
 """)
 
 # ---------------- SIDEBAR ----------------
@@ -211,7 +210,7 @@ with col3:
 if len(st.session_state.messages) == 0:
 
     st.info("""
-### 🔐 Ask About:
+# 🔐 Ask About:
 
 • Phishing Attacks
 • Password Security
