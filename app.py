@@ -1,3 +1,5 @@
+
+
 import random
 import streamlit as st
 
@@ -9,10 +11,10 @@ from utils.pdf_export import create_pdf
 # ---------------- PAGE CONFIG ----------------
 
 st.set_page_config(
-    page_title="CyberShield AI",
+    page_title="Cyber Awareness Assistant",
     page_icon="🛡️",
-    layout="wide",
-    initial_sidebar_state="expanded"
+    layout="centered",
+    initial_sidebar_state="collapsed"
 )
 
 # ---------------- CUSTOM CSS ----------------
@@ -20,10 +22,12 @@ st.set_page_config(
 st.markdown("""
 <style>
 
+/* Title */
 h1 {
     text-align: center;
 }
 
+/* Chat messages */
 .stChatMessage {
     border-radius: 15px;
     padding: 5px;
@@ -31,34 +35,34 @@ h1 {
 
 /* Chat Input Container */
 [data-testid="stChatInput"] {
-    background: #1e1e2f !important;
     border: 1px solid #3b82f6 !important;
     border-radius: 30px !important;
     padding: 8px !important;
 }
 
-/* Remove all inner borders */
+/* Remove inner borders */
 [data-testid="stChatInput"] > div {
     border: none !important;
     box-shadow: none !important;
     background: transparent !important;
 }
 
-/* Text area */
+/* Auto theme support */
 [data-testid="stChatInput"] textarea {
     border: none !important;
     outline: none !important;
     box-shadow: none !important;
-    background: transparent !important;
+    background: inherit !important;
+    color: inherit !important;
 }
 
-/* Focus state */
+/* Focus effect */
 [data-testid="stChatInput"]:focus-within {
     border: 1px solid #3b82f6 !important;
-    box-shadow: 0 0 10px rgba(59,130,246,0.4) !important;
+    box-shadow: 0 0 8px rgba(59,130,246,0.3) !important;
 }
 
-/* Remove all red outlines */
+/* Remove red outlines */
 textarea,
 textarea:focus,
 textarea:focus-visible,
@@ -70,8 +74,30 @@ input:focus-visible {
     box-shadow: none !important;
 }
 
+/* Mobile Optimization */
+@media (max-width: 768px) {
+
+    h1 {
+        font-size: 26px !important;
+    }
+
+    .stMarkdown {
+        font-size: 14px !important;
+    }
+
+    [data-testid="stMetric"] {
+        text-align: center !important;
+    }
+
+    [data-testid="stChatInput"] {
+        border-radius: 20px !important;
+        padding: 6px !important;
+    }
+}
+
 </style>
 """, unsafe_allow_html=True)
+
 
 
 # ---------------- SESSION STATE ----------------
@@ -182,46 +208,43 @@ with st.sidebar:
 
 # ---------------- DASHBOARD ----------------
 
-col1, col2, col3 = st.columns(3)
+# ---------------- DASHBOARD ----------------
 
-with col1:
+st.markdown(f"""
+<div style="
+display:flex;
+justify-content:space-around;
+align-items:center;
+text-align:center;
+margin-bottom:20px;
+">
 
-    st.metric(
-        "Questions Asked",
-        len(user_messages)
-    )
+<div>
+<p style="margin:0;font-size:12px;">Questions</p>
+<h3>{len(user_messages)}</h3>
+</div>
 
-with col2:
+<div>
+<p style="margin:0;font-size:12px;">Language</p>
+<h3>{language}</h3>
+</div>
 
-    st.metric(
-        "Language",
-        language
-    )
+<div>
+<p style="margin:0;font-size:12px;">Status</p>
+<h3>Protected</h3>
+</div>
 
-with col3:
+</div>
+""", unsafe_allow_html=True)
 
-    st.metric(
-        "Security Status",
-        "Protected"
-    )
 
 # ---------------- WELCOME CARD ----------------
 
 if len(st.session_state.messages) == 0:
 
-    st.info("""
-# 🔐 Ask About:
-
-• Phishing Attacks
-• Password Security
-• UPI Frauds
-• Email Scams
-• Social Engineering
-• Malware
-• Ransomware
-• Safe Browsing
-• Cyber Awareness
-""")
+   st.caption(
+    "🔐 Phishing • Passwords • UPI Frauds • Email Scams • Malware • Ransomware"
+)
 
 # ---------------- DISPLAY CHAT ----------------
 
